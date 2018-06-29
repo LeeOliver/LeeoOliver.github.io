@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Hello World｜undefined
+        RAC-RACSignal｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/LeeoOliver.github.io/2018/06/27/hello-world/">
+    <link rel="canonical" href="http://yoursite.com/LeeoOliver.github.io/2018/06/28/Jimmy-s-blog-Hexo/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/LeeoOliver.github.io/css/bootstrap.min.css">
@@ -153,15 +153,18 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Hello World</h1>
+                    <h1>RAC-RACSignal</h1>
                     
                     <span class="meta">
                          作者 Jimmy Lee
                         <span>
-                          日期 2018-06-27
+                          日期 2018-06-28
                          </span>
                     </span>
                     <div class="tags text-center">
+                        
+                        <a class="tag" href="/LeeoOliver.github.io/tags/#RAC"
+                           title="RAC">RAC</a>
                         
                     </div>
                 </div>
@@ -170,7 +173,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Hello World
+            RAC-RACSignal
         </span>
     </div>
 </header>
@@ -181,15 +184,41 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <p>学习笔记，学习之余记录点整理的RAC学习记录。</p>
+<blockquote>
+<ul>
+<li>RACSignal</li>
+<li><a href="/hello-world.md">RACSubject</a></li>
+<li>RACSequence</li>
+<li>RACMulticastConnection</li>
+<li>RACCommand</li>
+<li>RAC常用宏</li>
+<li>RAC-bind</li>
+<li>RAC-过滤</li>
+<li>RAC-映射</li>
+<li>RAC-组合</li>
+<li>RAC+MVVM-网络请求</li>
+</ul>
+</blockquote>
+<h4 id="RACSignal"><a href="#RACSignal" class="headerlink" title="RACSignal"></a>RACSignal</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.创建信号</span></span><br><span class="line">RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line"><span class="comment">// 3.发送信号</span></span><br><span class="line">[subscriber sendNext:<span class="string">@"ws"</span>];</span><br><span class="line"><span class="comment">// 4.取消信号，如果信号想要被取消，就必须返回一个RACDisposable</span></span><br><span class="line"><span class="comment">// 信号什么时候被取消：1.自动取消，当一个信号的订阅者被销毁的时候机会自动取消订阅，2.手动取消，</span></span><br><span class="line"><span class="comment">//block什么时候调用：一旦一个信号被取消订阅就会调用</span></span><br><span class="line"><span class="comment">//block作用：当信号被取消时用于清空一些资源</span></span><br><span class="line"><span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"取消订阅"</span>);</span><br><span class="line">&#125;];</span><br><span class="line">&#125;];</span><br><span class="line"><span class="comment">// 2. 订阅信号</span></span><br><span class="line"><span class="comment">//subscribeNext</span></span><br><span class="line"><span class="comment">// 把nextBlock保存到订阅者里面</span></span><br><span class="line"><span class="comment">// 只要订阅信号就会返回一个取消订阅信号的类</span></span><br><span class="line">RACDisposable *disposable = [signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</span><br><span class="line"><span class="comment">// block的调用时刻：只要信号内部发出数据就会调用这个block</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"======%@"</span>, x);</span><br><span class="line">&#125;];</span><br><span class="line"><span class="comment">// 取消订阅</span></span><br><span class="line">[disposable dispose];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5></blockquote>
+<ul>
+<li>.核心：</li>
+<li>.核心：信号类</li>
+<li>.信号类的作用：只要有数据改变就会把数据包装成信号传递出去</li>
+<li>.只要有数据改变就会有信号发出</li>
+<li>.数据发出，并不是信号类发出，信号类不能发送数据</li>
+<li>.使用方法：</li>
+<li>.创建信号</li>
+<li>.订阅信号</li>
+<li>.实现思路：</li>
+<li>.当一个信号被订阅，创建订阅者，并把nextBlock保存到订阅者里面。</li>
+<li>.创建的时候会返回 [RACDynamicSignal createSignal:didSubscribe];</li>
+<li>.调用RACDynamicSignal的didSubscribe</li>
+<li>.发送信号[subscriber sendNext:value];</li>
+<li>.拿到订阅者的nextBlock调用</li>
+</ul>
 
                 <hr>
                 
@@ -197,10 +226,15 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/LeeoOliver.github.io/2018/06/28/Jimmy-s-blog-Hexo/" data-toggle="tooltip" data-placement="top"
-                           title="RAC-RACSignal">&larr; Previous Post</a>
+                        <a href="/LeeoOliver.github.io/2018/06/29/RAC-RACSubject/" data-toggle="tooltip" data-placement="top"
+                           title="RAC-RACSubject">&larr; Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/LeeoOliver.github.io/2018/06/27/hello-world/" data-toggle="tooltip" data-placement="top"
+                           title="Hello World">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 
@@ -215,7 +249,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#RACSignal"><span class="toc-text">RACSignal</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>

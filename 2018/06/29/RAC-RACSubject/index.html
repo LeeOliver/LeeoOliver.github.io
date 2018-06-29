@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Hello World｜undefined
+        RAC-RACSubject｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/LeeoOliver.github.io/2018/06/27/hello-world/">
+    <link rel="canonical" href="http://yoursite.com/LeeoOliver.github.io/2018/06/29/RAC-RACSubject/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/LeeoOliver.github.io/css/bootstrap.min.css">
@@ -153,15 +153,18 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Hello World</h1>
+                    <h1>RAC-RACSubject</h1>
                     
                     <span class="meta">
                          作者 Jimmy Lee
                         <span>
-                          日期 2018-06-27
+                          日期 2018-06-29
                          </span>
                     </span>
                     <div class="tags text-center">
+                        
+                        <a class="tag" href="/LeeoOliver.github.io/tags/#RAC"
+                           title="RAC">RAC</a>
                         
                     </div>
                 </div>
@@ -170,7 +173,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Hello World
+            RAC-RACSubject
         </span>
     </div>
 </header>
@@ -181,26 +184,34 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <h4 id="RACSubject"><a href="#RACSubject" class="headerlink" title="RACSubject"></a>RACSubject</h4><p>RACSubject 在使用中我们可以完全代替代理，代码简介方法。具体代码请看demo中的RACSubject。</p>
+<p><strong>总结</strong></p>
+<p>我们完全可以用RACSubject代替代理/通知，确实方便许多<br>这里我们点击TwoViewController的pop的时候 将字符串”ws”传给了ViewController的button的title。</p>
+<p>步骤：</p>
+<ul>
+<li><p>1.创建信号</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RACSubject *subject = [RACSubject subject];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.订阅信号</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[subject subscribeNext:^(<span class="keyword">id</span> x) &#123;</span><br><span class="line"><span class="comment">// block:当有数据发出的时候就会调用</span></span><br><span class="line"><span class="comment">// block:处理数据</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,x);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3.发送信号</p>
+<pre><code class="objc">[subject sendNext:value];
+</code></pre>
+</li>
+<li>注意<br>RACSubject和RACReplaySubject的区别<br>RACSubject必须要先订阅信号之后才能发送信号， 而RACReplaySubject可以先发送信号后订阅.<br>RACSubject 代码中体现为：先走TwoViewController的sendNext，后走ViewController的subscribeNext订阅<br>RACReplaySubject 代码中体现为：先走ViewController的subscribeNext订阅，后走TwoViewController的sendNext<br>可按实际情况各取所需。</li>
+</ul>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/LeeoOliver.github.io/2018/06/28/Jimmy-s-blog-Hexo/" data-toggle="tooltip" data-placement="top"
-                           title="RAC-RACSignal">&larr; Previous Post</a>
-                    </li>
                     
+                    <li class="next">
+                        <a href="/LeeoOliver.github.io/2018/06/28/Jimmy-s-blog-Hexo/" data-toggle="tooltip" data-placement="top"
+                           title="RAC-RACSignal">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 
@@ -215,7 +226,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#RACSubject"><span class="toc-text">RACSubject</span></a></li></ol>
                 </div>
             </div>
         </div>
